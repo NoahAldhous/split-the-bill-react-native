@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {View, StyleSheet, Text, Button} from 'react-native';
+import CalculatorButtons from './CalculatorButtons';
 import ServiceChargeButtons from './ServiceChargeButtons';
 
 const Calculator = () => {
@@ -20,6 +21,7 @@ const Calculator = () => {
 
     return <View>
         <Text>User Input : {userInput}</Text>
+        <CalculatorButtons/>
         {/* <Text>Service Charge : {serviceCharge}</Text>
         <Text>Bill: {bill}</Text> */}
         {/* <ServiceChargeButtons setServiceCharge = {setServiceCharge} calculateBill = {calculateBill}/> */}
