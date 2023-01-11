@@ -2,7 +2,10 @@ import React, {useState} from 'react';
 import {View, StyleSheet, Text, Button} from 'react-native';
 
 
-const ServiceChargeButtons = (props: { setServiceCharge: (arg0: number) => void; calculateBill: () => void; }) => {
+const ServiceChargeButtons = (props: { 
+        setServiceCharge: (arg0: number) => void; 
+        calculateBill: () => void; 
+    }) => {
 
     const { setServiceCharge , calculateBill } = props;
 
