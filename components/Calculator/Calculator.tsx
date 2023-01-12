@@ -35,6 +35,11 @@ const Calculator = () => {
             setBill = {setBill}
             serviceCharge = {serviceCharge}
         />
+        <ServiceChargeButtons setServiceCharge={function (arg0: number): void {
+            throw new Error('Function not implemented.');
+        } } calculateBill={function (): void {
+            throw new Error('Function not implemented.');
+        } }/>
     </View>
 };
 
@@ -60,12 +65,13 @@ const styles = StyleSheet.create({
     },
     billTextContainer: {
         alignItems:"flex-end",
-        backgroundColor:"white",
+        backgroundColor:"#ADA3CC",
         borderRadius:50,
         padding:5
     },
     billText: {
         fontSize:35,
+        color:"#1F2041"
     }
   });
 

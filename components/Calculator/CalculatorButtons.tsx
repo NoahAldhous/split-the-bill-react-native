@@ -87,7 +87,7 @@ const CalculatorButtons: React.FunctionComponent<CalculatorButtonsProps> = ({use
         ["C", ".", "del"]
     ];
 
-    return <View>
+    return <View style={styles.buttonRowContainer}>
         {buttonArray.map( 
             (arrayOfButtonValues:string[]) => {
                 return <View style={styles.buttonRow}>
@@ -111,23 +111,26 @@ const CalculatorButtons: React.FunctionComponent<CalculatorButtonsProps> = ({use
 }
 
 const styles = StyleSheet.create({
+    buttonRowContainer: {
+        alignItems:"center"
+    },
     buttonRow: {
         flexDirection:"row",
         justifyContent:"space-evenly",
         alignItems:"center",
-        height: 100,
-        width: 300,
+        height: 80,
+        width: 250,
     },
     calculatorButton: {
         borderRadius:50,
         padding:1,
-        width:85,
-        height:85,
+        width:75,
+        height:75,
         justifyContent:"center",
         alignItems:"center",
     },
     calculatorButtonText: {
-        color:"orange",
+        color:"#F0EFF4",
         fontSize:40,
     }
 });
