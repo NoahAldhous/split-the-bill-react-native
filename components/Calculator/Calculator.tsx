@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useReducer} from 'react';
 import {View, StyleSheet, Text, Pressable} from 'react-native';
 import CalculatorButtons from './CalculatorButtons';
 import ServiceChargeButtons from './ServiceChargeButtons';
@@ -10,8 +10,6 @@ const Calculator = () => {
     const [serviceCharge, setServiceCharge] = useState<number>(10);
 
     const [bill, setBill] = useState<string>("0.00")
-
-    const buttonArray = ["1","2","3","4","5","6","7","8","9"];
 
     const calculateBill = () => {
 
@@ -29,7 +27,11 @@ const Calculator = () => {
 
     return <View>
         <Text>User Input : {userInput}</Text>
-        <CalculatorButtons/>
+        <CalculatorButtons 
+            userInput = {userInput}
+            setUserInput = {setUserInput}
+            
+        />
     </View>
 };
 

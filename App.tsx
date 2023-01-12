@@ -8,7 +8,6 @@ export default function App() {
     <View style={styles.container}>
       <Header/>
       <Calculator/>
-      <Text>Hello World!</Text>
       <StatusBar style="auto" />
     </View>
   );
