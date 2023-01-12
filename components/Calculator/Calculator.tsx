@@ -7,7 +7,7 @@ const Calculator = () => {
 
     const [userInput, setUserInput] = useState<string>("0")
     
-    const [serviceCharge, setServiceCharge] = useState<number>(10);
+    const [serviceCharge, setServiceCharge] = useState<number>(0);
 
     const [bill, setBill] = useState<string>("0.00")
 
@@ -26,11 +26,14 @@ const Calculator = () => {
     }
 
     return <View>
-        <Text>User Input : {userInput}</Text>
+        <View style={styles.billTextContainer}>
+            <Text style={styles.billText}>{bill}</Text>
+        </View>
         <CalculatorButtons 
             userInput = {userInput}
             setUserInput = {setUserInput}
-            
+            setBill = {setBill}
+            serviceCharge = {serviceCharge}
         />
     </View>
 };
@@ -54,6 +57,15 @@ const styles = StyleSheet.create({
     calculatorButtonText: {
         color:"orange",
         fontSize:40,
+    },
+    billTextContainer: {
+        alignItems:"flex-end",
+        backgroundColor:"white",
+        borderRadius:50,
+        padding:5
+    },
+    billText: {
+        fontSize:35,
     }
   });
 

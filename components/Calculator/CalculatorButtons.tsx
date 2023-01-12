@@ -1,16 +1,31 @@
-import React, {Dispatch, SetStateAction, useState} from 'react';
+import React, {Dispatch, SetStateAction, useState, useEffect} from 'react';
 import {View, StyleSheet, Text, Pressable} from 'react-native';
 
 type CalculatorButtonsProps = {
     userInput:string,
-    setUserInput:Dispatch<SetStateAction<string>>
+    setUserInput:Dispatch<SetStateAction<string>>,
+    setBill:Dispatch<SetStateAction<string>>,
+    serviceCharge:number,
 }
 
-const CalculatorButtons: React.FunctionComponent<CalculatorButtonsProps> = ({userInput, setUserInput}) => {
+const CalculatorButtons: React.FunctionComponent<CalculatorButtonsProps> = ({userInput, setUserInput, setBill, serviceCharge}) => {
 
     const changeServiceCharge = (value:string) => {
         return null;
     }
+
+    const calculateBill = () => {
+
+        let billWithoutTip:number = Number(userInput);
+
+        let tip:number = Number(((billWithoutTip / 100) * serviceCharge).toFixed(2))
+        
+        setBill((billWithoutTip + tip).toFixed(2))
+    }
+
+    useEffect(() => {
+        calculateBill();
+    }, [userInput])
 
     const handleButtonPress = (value: { buttonValue: string; }) => {
         //ensures userInput always has a default value of "0", to avoid elements displaying as undefined or null;
@@ -53,7 +68,7 @@ const CalculatorButtons: React.FunctionComponent<CalculatorButtonsProps> = ({use
                 //value.buttonValue click has no effect;
                 } else if (
                 !/^[0-9]+\.[0-9]{2,}/g.test(userInput) &&
-                userInput.length <= 6
+                userInput.length <= 11
                 ) {
                 setUserInput(userInput + value.buttonValue);
                 } else {
@@ -61,9 +76,16 @@ const CalculatorButtons: React.FunctionComponent<CalculatorButtonsProps> = ({use
                 };
             };
         };
+        calculateBill();
     };
 
-    const buttonArray:string[][] = [["1","2","3"],["4","5","6"],["7","8","9"],["0"],["C", ".", "del"]];
+    const buttonArray:string[][] = [
+        ["1","2","3"],
+        ["4","5","6"],
+        ["7","8","9"],
+        ["0"],
+        ["C", ".", "del"]
+    ];
 
     return <View>
         {buttonArray.map( 
