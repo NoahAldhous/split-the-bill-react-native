@@ -36,6 +36,8 @@ const Calculator = () => {
 
     const [bill, setBill] = useState<string>("0.00")
 
+    const [numberOfGuests, setNumberofGuests] = useState<number>(1)
+
     const calculateBill = () => {
 
         let billWithoutTip:number = Number(userInput);
@@ -69,7 +71,10 @@ const Calculator = () => {
             setServiceChargeButtonArray={setServiceChargeButtonArray}
 
         />
-        <GuestSlider/>
+        <GuestSlider
+            setNumberOfGuests={setNumberofGuests}
+        />
+        <Text>{numberOfGuests}</Text>
     </View>
 };
 
