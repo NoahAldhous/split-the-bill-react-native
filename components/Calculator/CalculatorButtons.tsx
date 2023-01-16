@@ -6,12 +6,37 @@ type CalculatorButtonsProps = {
     setUserInput:Dispatch<SetStateAction<string>>,
     setBill:Dispatch<SetStateAction<string>>,
     serviceCharge:number,
+    setServiceCharge:Dispatch<SetStateAction<number>>,
+    setServiceChargeButtonArray:Dispatch<SetStateAction<{value:string, isActive:boolean}[]>>
 }
 
-const CalculatorButtons: React.FunctionComponent<CalculatorButtonsProps> = ({userInput, setUserInput, setBill, serviceCharge}) => {
+const CalculatorButtons: React.FunctionComponent<CalculatorButtonsProps> = ({userInput, setUserInput, setBill, serviceCharge, setServiceCharge, setServiceChargeButtonArray}) => {
 
-    const changeServiceCharge = (value:string) => {
-        return null;
+    const clearServiceCharge = () => {
+        setServiceCharge(0);
+        setServiceChargeButtonArray([
+            {
+                value: "0",
+                isActive: true,
+            },
+            {
+                value:"10",
+                isActive: false
+            },
+            {
+                value:"12",
+                isActive: false
+            },
+            {
+                value:"15",
+                isActive: false
+            },
+            {
+                value:"20",
+                isActive: false
+            },
+        ]);
+        calculateBill();
     }
 
     const calculateBill = () => {
@@ -38,7 +63,7 @@ const CalculatorButtons: React.FunctionComponent<CalculatorButtonsProps> = ({use
             //if C value.buttonValue is clicked, reset userInput and serviceCharge to 0;
             case "C":
                 setUserInput("0");
-                changeServiceCharge("0");
+                clearServiceCharge();
                 break;
             //if "." value.buttonValue is clicked and userInput does not already contain ".", add ".";
             case ".":

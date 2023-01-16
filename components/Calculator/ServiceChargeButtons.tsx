@@ -1,40 +1,94 @@
-import React, {useState} from 'react';
+import React, {SetStateAction, useState, Dispatch} from 'react';
 import {View, StyleSheet, Text, Button, Pressable} from 'react-native';
 
+type ServiceChargeButtonsProps = {
+    setServiceCharge:Dispatch<SetStateAction<number>>, 
+    calculateBill:() => void,
+    serviceChargeButtonArray:{value: string, isActive:boolean}[],
+    setServiceChargeButtonArray:Dispatch<SetStateAction<{value:string, isActive:boolean}[]>>,
+}
 
-const ServiceChargeButtons = (props: { 
-        setServiceCharge: (arg0: number) => void; 
-        calculateBill: () => void; 
-    }) => {
+const ServiceChargeButtons: React.FunctionComponent<ServiceChargeButtonsProps> = (props) => {
 
-    const { setServiceCharge , calculateBill } = props;
+        const {
+            setServiceCharge, 
+            calculateBill, 
+            serviceChargeButtonArray, 
+            setServiceChargeButtonArray
+        } = props;
 
-    function changeServiceCharge(button:string) {
-        setServiceCharge(Number(button));
-        calculateBill();
-    }
-
-    const serviceChargeButtonArray:string[] = [
-        "0",
-        "10",
-        "12",
-        "15",
-        "20",
-    ]
+        function changeServiceCharge(button:string) {
+            setServiceCharge(Number(button));
+            calculateBill();
+            setActiveButton(button);
+        }
+    
+        const setActiveButton = (button:string) => {
+                let array = [     {
+                    value: "0",
+                    isActive: false,
+                },
+                {
+                    value:"10",
+                    isActive: false
+                },
+                {
+                    value:"12",
+                    isActive: false
+                },
+                {
+                    value:"15",
+                    isActive: false
+                },
+                {
+                    value:"20",
+                    isActive: false
+                },];
+                for(let i = 0 ; i < array.length; i++){
+                    if (button === array[i].value){
+                        array[i] = {value:button, isActive:true}
+                        setServiceChargeButtonArray(array);
+                    };
+              };}
 
     return <View style={styles.serviceChargeButtonContainer}>
         {serviceChargeButtonArray.map(
-            (buttonValue:string) => {
+            (buttonValue:{value:string, isActive:boolean}) => {
                 return <Pressable
                     style= {({ pressed }) => [
                         {
                             backgroundColor: pressed
-                                ? '#1F2041'
+                                ? 'orange'
                                 : '#4B3F72'
                         },
+                        {
+                            backgroundColor: buttonValue.isActive
+                                ? 'orange'
+                                : '#4B3F72'
+                        },
+                        {
+                            borderTopLeftRadius: buttonValue.value === "0"
+                                ? 50
+                                : 0
+                        },
+                        {
+                            borderBottomLeftRadius: buttonValue.value === "0"
+                                ? 50
+                                : 0
+                        },
+                        {
+                            borderTopRightRadius: buttonValue.value === "20"
+                                ? 50
+                                : 0
+                        },
+                        {
+                            borderBottomRightRadius: buttonValue.value === "20"
+                                ? 50
+                                : 0
+                        },
                         styles.serviceChargeButton
-                    ]}onPress={() => console.log("!")}>
-                        <Text style={styles.serviceChargeButtonText}>{buttonValue}</Text>
+                    ]}onPress={() => changeServiceCharge(buttonValue.value)}>
+                        <Text style={styles.serviceChargeButtonText}>{buttonValue.value}</Text>
                     </Pressable>
             }
         )}
@@ -45,19 +99,20 @@ const ServiceChargeButtons = (props: {
 const styles = StyleSheet.create({
     serviceChargeButtonContainer: {
         flexDirection:"row",
-        justifyContent:"space-between",
+        justifyContent:"center",
+        alignItems:"center",
+        width: 300,
     },
     serviceChargeButton: {
-        borderRadius:50,
         padding:1,
-        width:55,
-        height:25,
+        width:65,
+        height:30,
         justifyContent:"center",
         alignItems:"center",
     },
     serviceChargeButtonText: {
         color:"#F0EFF4",
-        fontSize:20,
+        fontSize:23,
     }
 });
 

@@ -4,6 +4,7 @@ import Header from './components/Header'
 import Calculator from './components/Calculator/Calculator';
 
 export default function App() {
+
   return (
     <View style={styles.container}>
       <Header/>

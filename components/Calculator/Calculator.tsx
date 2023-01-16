@@ -1,9 +1,33 @@
-import React, {useState, useReducer} from 'react';
+import React, {useState, useReducer, useEffect} from 'react';
 import {View, StyleSheet, Text, Pressable} from 'react-native';
 import CalculatorButtons from './CalculatorButtons';
 import ServiceChargeButtons from './ServiceChargeButtons';
 
 const Calculator = () => {
+
+    const [serviceChargeButtonArray, setServiceChargeButtonArray] =
+    useState<{value:string, isActive:boolean}[]>([
+        {
+            value: "0",
+            isActive: true,
+        },
+        {
+            value:"10",
+            isActive: false
+        },
+        {
+            value:"12",
+            isActive: false
+        },
+        {
+            value:"15",
+            isActive: false
+        },
+        {
+            value:"20",
+            isActive: false
+        },
+    ]);
 
     const [userInput, setUserInput] = useState<string>("0")
     
@@ -20,10 +44,9 @@ const Calculator = () => {
         setBill((billWithoutTip + tip).toFixed(2))
     }
 
-    const handleButtonPress = (buttonValue:string) => {
-
-        setUserInput(userInput + buttonValue);
-    }
+    useEffect(() => {
+        calculateBill();
+    }, [userInput, serviceCharge])
 
     return <View>
         <View style={styles.billTextContainer}>
@@ -34,12 +57,17 @@ const Calculator = () => {
             setUserInput = {setUserInput}
             setBill = {setBill}
             serviceCharge = {serviceCharge}
+            setServiceCharge= {setServiceCharge}
+            setServiceChargeButtonArray={setServiceChargeButtonArray}
         />
-        <ServiceChargeButtons setServiceCharge={function (arg0: number): void {
-            throw new Error('Function not implemented.');
-        } } calculateBill={function (): void {
-            throw new Error('Function not implemented.');
-        } }/>
+        <Text>Add a Tip?</Text>
+        <ServiceChargeButtons 
+            setServiceCharge={setServiceCharge} 
+            calculateBill={calculateBill}
+            serviceChargeButtonArray={serviceChargeButtonArray}
+            setServiceChargeButtonArray={setServiceChargeButtonArray}
+
+        />
     </View>
 };
 
