@@ -71,10 +71,10 @@ const Calculator = () => {
             setServiceChargeButtonArray={setServiceChargeButtonArray}
 
         />
+        <Text>Split Between:{numberOfGuests}</Text>
         <GuestSlider
             setNumberOfGuests={setNumberofGuests}
         />
-        <Text>{numberOfGuests}</Text>
     </View>
 };
 

@@ -14,8 +14,9 @@ const GuestSlider: React.FunctionComponent<GuestSliderProps> = ({setNumberOfGues
         style={{width: 300, height: 40}}
         minimumValue={1}
         maximumValue={10}
-        minimumTrackTintColor="#FFFFFF"
-        maximumTrackTintColor="#000000"
+        minimumTrackTintColor='orange'
+        maximumTrackTintColor='#1F2041'
+        thumbTintColor='orange'
         tapToSeek={true}
         step={1}
         onValueChange= {(value:number) => {setNumberOfGuests(value)}}
