@@ -1,6 +1,7 @@
 import React, {useState, useReducer, useEffect} from 'react';
 import {View, StyleSheet, Text, Pressable} from 'react-native';
 import CalculatorButtons from './CalculatorButtons';
+import GuestSlider from './GuestSlider';
 import ServiceChargeButtons from './ServiceChargeButtons';
 
 const Calculator = () => {
@@ -68,6 +69,7 @@ const Calculator = () => {
             setServiceChargeButtonArray={setServiceChargeButtonArray}
 
         />
+        <GuestSlider/>
     </View>
 };
 
