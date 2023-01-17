@@ -6,6 +6,7 @@ type ServiceChargeButtonsProps = {
     calculateBill:() => void,
     serviceChargeButtonArray:{value: string, isActive:boolean}[],
     setServiceChargeButtonArray:Dispatch<SetStateAction<{value:string, isActive:boolean}[]>>,
+    checkIfEvenSplit:() => void
 }
 
 const ServiceChargeButtons: React.FunctionComponent<ServiceChargeButtonsProps> = (props) => {
@@ -14,12 +15,15 @@ const ServiceChargeButtons: React.FunctionComponent<ServiceChargeButtonsProps> =
             setServiceCharge, 
             calculateBill, 
             serviceChargeButtonArray, 
-            setServiceChargeButtonArray
+            setServiceChargeButtonArray,
+            checkIfEvenSplit
         } = props;
 
         function changeServiceCharge(button:string) {
             setServiceCharge(Number(button));
             setActiveButton(button);
+            console.log(`service charge changed to ${button}`)
+            checkIfEvenSplit();
         }
     
         const setActiveButton = (button:string) => {

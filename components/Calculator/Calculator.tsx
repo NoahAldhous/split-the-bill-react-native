@@ -66,7 +66,6 @@ const Calculator = () => {
         setAmountToPay(Number(Number(bill) / numberOfGuests).toFixed(
             2
           ));
-        
     }
 
     const checkIfEvenSplit = () => {
@@ -84,18 +83,16 @@ const Calculator = () => {
     const calculateUnevenSplit = () => {
 
         setRemainder(
-          Number(bill) -
-          Number(amountToPay) * Number(numberOfGuests));
-        console.log(`remainder: ${remainder}`)
+          Number(Number(Number(bill) -
+          Number(amountToPay) * Number(numberOfGuests)).toFixed(2)));
     }
 
     const calculateOddOneOut = () => {
         setOddOneOut(Number(
             Number(amountToPay) + Number(remainder)
             ).toFixed(2));
-          console.log(`odd one out:${oddOneOut}`)
   
-          if (oddOneOut == amountToPay) {
+          if (oddOneOut === amountToPay) {
             setEvenSplit(true);
           }
         }
@@ -106,17 +103,18 @@ const Calculator = () => {
 
     useEffect(() => {
         checkIfEvenSplit();
-    }, [amountToPay, serviceCharge, numberOfGuests]);
+    });
 
     useEffect(() => {
         calculateUnevenSplit();
-    }, [evenSplit, amountToPay, serviceCharge, numberOfGuests]);
+    }, [evenSplit, amountToPay]);
 
     useEffect(() => {
+        console.log('called calculate odd one out!')
         calculateOddOneOut();
-    }, [remainder, serviceCharge]);
+    });
 
-    return <View>
+    return <View style={styles.calculatorContainer}>
         <View style={styles.billTextContainer}>
             <Text style={styles.billText}>{bill}</Text>
         </View>
@@ -134,6 +132,7 @@ const Calculator = () => {
             calculateBill={calculateBill}
             serviceChargeButtonArray={serviceChargeButtonArray}
             setServiceChargeButtonArray={setServiceChargeButtonArray}
+            checkIfEvenSplit={checkIfEvenSplit}
 
         />
         <Text>Split Between:{numberOfGuests}</Text>
@@ -145,6 +144,9 @@ const Calculator = () => {
 };
 
 const styles = StyleSheet.create({
+    calculatorContainer: {
+        justifyContent: "center",
+    },
     buttonRow: {
         flexDirection:"row",
         justifyContent:"space-evenly",
