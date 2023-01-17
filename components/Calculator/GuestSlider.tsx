@@ -11,8 +11,8 @@ const GuestSlider: React.FunctionComponent<GuestSliderProps> = ({setNumberOfGues
 
 
     return <Slider
-        style={{width: 300, height: 40}}
-        minimumValue={1}
+        style={{width: 325, height: 40}}
+        minimumValue={2}
         maximumValue={10}
         minimumTrackTintColor='orange'
         maximumTrackTintColor='#1F2041'

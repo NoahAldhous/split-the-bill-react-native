@@ -93,7 +93,7 @@ const CalculatorButtons: React.FunctionComponent<CalculatorButtonsProps> = ({use
                 //value.buttonValue click has no effect;
                 } else if (
                 !/^[0-9]+\.[0-9]{2,}/g.test(userInput) &&
-                userInput.length <= 11
+                userInput.length <= 6
                 ) {
                 setUserInput(userInput + value.buttonValue);
                 } else {
@@ -121,7 +121,7 @@ const CalculatorButtons: React.FunctionComponent<CalculatorButtonsProps> = ({use
                     style= {({ pressed }) => [
                         {
                             backgroundColor: pressed
-                                ? '#1F2041'
+                                ? 'orange'
                                 : '#4B3F72'
                         },
                         styles.calculatorButton
@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
         alignItems:"center",
     },
     calculatorButtonText: {
-        color:"#F0EFF4",
+        color:"orange",
         fontSize:40,
     }
 });

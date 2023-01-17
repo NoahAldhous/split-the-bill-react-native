@@ -42,7 +42,7 @@ const Calculator = () => {
     
     const [bill, setBill] = useState<string>("0.00")
     
-    const [numberOfGuests, setNumberofGuests] = useState<number>(1)
+    const [numberOfGuests, setNumberofGuests] = useState<number>(2)
     
     const [amountToPay, setAmountToPay] = useState<string>("0.00")
 
@@ -136,20 +136,30 @@ const Calculator = () => {
             checkIfEvenSplit={checkIfEvenSplit}
 
         />
-        <View style={styles.infoTextContainer}>
-            <Text style={styles.infoText}>Split Between:{numberOfGuests}</Text>
-        </View>
+        { evenSplit 
+            ? <View style={styles.amountToPayTextContainer}>
+                <Text style={styles.amountToPayText}>Each Pays: £{amountToPay}</Text>
+            </View>
+            : <View style={styles.amountToPayTextContainer}>
+                <Text style={styles.amountToPayText}> One Pays: {oddOneOut}</Text> 
+                <Text style={styles.amountToPayText}> Rest Pays: {amountToPay}</Text>  
+            </View>
+        }
         <GuestSlider
             setNumberOfGuests={setNumberofGuests}
         />
-        { evenSplit ? <Text style={styles.amountToPayText}>Each Pays: £{amountToPay}</Text> : <Text style={styles.amountToPayText}> One Pays: {oddOneOut} Rest Pays: {amountToPay}</Text>}  
+        <View style={styles.infoTextContainer}>
+            <Text style={styles.infoText}>Split Between:{numberOfGuests}</Text>
+        </View>
     </View>
 };
 
 const styles = StyleSheet.create({
     calculatorContainer: {
         justifyContent: "space-between",
-        height:650
+        alignItems:"center",
+        height:700,
+        width:325
     },
     buttonRow: {
         flexDirection:"row",
@@ -174,19 +184,31 @@ const styles = StyleSheet.create({
         alignItems:"flex-end",
         backgroundColor:"#ADA3CC",
         borderRadius:50,
-        padding:5
+        padding:5,
+        width:300
     },
     billText: {
         fontSize:35,
         color:"#1F2041"
     },
+    amountToPayTextContainer: {
+        backgroundColor: "orange",
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: 50,
+        height: 70,
+        width: 325,
+    },
     amountToPayText: {
-        fontSize:20,
+        fontSize:28,
         color:"#1F2041"
     },
     infoTextContainer: {
         justifyContent:"center",
         alignItems:"center",
+        backgroundColor:"#ADA3CC",
+        borderRadius:50,
+        width: 325
     },
     infoText: {
         fontSize:25,

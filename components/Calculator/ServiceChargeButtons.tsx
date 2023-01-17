@@ -22,7 +22,6 @@ const ServiceChargeButtons: React.FunctionComponent<ServiceChargeButtonsProps> =
         function changeServiceCharge(button:string) {
             setServiceCharge(Number(button));
             setActiveButton(button);
-            console.log(`service charge changed to ${button}`)
             checkIfEvenSplit();
         }
     
@@ -91,7 +90,7 @@ const ServiceChargeButtons: React.FunctionComponent<ServiceChargeButtonsProps> =
                         },
                         styles.serviceChargeButton
                     ]}onPress={() => changeServiceCharge(buttonValue.value)}>
-                        <Text style={styles.serviceChargeButtonText}>{buttonValue.value}</Text>
+                        <Text style={styles.serviceChargeButtonText}>{buttonValue.value}%</Text>
                     </Pressable>
             }
         )}
