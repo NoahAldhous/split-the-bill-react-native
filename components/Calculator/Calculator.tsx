@@ -126,7 +126,9 @@ const Calculator = () => {
             setServiceCharge= {setServiceCharge}
             setServiceChargeButtonArray={setServiceChargeButtonArray}
         />
-        <Text>Add a Tip?</Text>
+        <View style={styles.infoTextContainer}>
+            <Text style={styles.infoText}>Add a Tip?</Text>
+        </View>
         <ServiceChargeButtons 
             setServiceCharge={setServiceCharge} 
             calculateBill={calculateBill}
@@ -135,7 +137,9 @@ const Calculator = () => {
             checkIfEvenSplit={checkIfEvenSplit}
 
         />
-        <Text>Split Between:{numberOfGuests}</Text>
+        <View style={styles.infoTextContainer}>
+            <Text style={styles.infoText}>Split Between:{numberOfGuests}</Text>
+        </View>
         <GuestSlider
             setNumberOfGuests={setNumberofGuests}
         />
@@ -145,7 +149,8 @@ const Calculator = () => {
 
 const styles = StyleSheet.create({
     calculatorContainer: {
-        justifyContent: "center",
+        justifyContent: "space-between",
+        height:650
     },
     buttonRow: {
         flexDirection:"row",
@@ -179,6 +184,14 @@ const styles = StyleSheet.create({
     amountToPayText: {
         fontSize:20,
         color:"#1F2041"
+    },
+    infoTextContainer: {
+        justifyContent:"center",
+        alignItems:"center",
+    },
+    infoText: {
+        fontSize:25,
+        color:"#1F2041",
     }
   });
 
