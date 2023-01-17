@@ -110,7 +110,6 @@ const Calculator = () => {
     }, [evenSplit, amountToPay]);
 
     useEffect(() => {
-        console.log('called calculate odd one out!')
         calculateOddOneOut();
     });
 
