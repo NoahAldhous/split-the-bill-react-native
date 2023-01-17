@@ -19,7 +19,6 @@ const ServiceChargeButtons: React.FunctionComponent<ServiceChargeButtonsProps> =
 
         function changeServiceCharge(button:string) {
             setServiceCharge(Number(button));
-            calculateBill();
             setActiveButton(button);
         }
     
