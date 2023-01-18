@@ -90,7 +90,15 @@ const ServiceChargeButtons: React.FunctionComponent<ServiceChargeButtonsProps> =
                         },
                         styles.serviceChargeButton
                     ]}onPress={() => changeServiceCharge(buttonValue.value)}>
-                        <Text style={styles.serviceChargeButtonText}>{buttonValue.value}%</Text>
+                        <Text style={[
+                            {
+                                color: buttonValue.isActive
+                                    ? '#4B3F72'
+                                    : 'orange'
+                            }, 
+                            styles.serviceChargeButtonText]}>
+                            {buttonValue.value}%
+                        </Text>
                     </Pressable>
             }
         )}
@@ -113,7 +121,6 @@ const styles = StyleSheet.create({
         alignItems:"center",
     },
     serviceChargeButtonText: {
-        color:"#F0EFF4",
         fontSize:23,
     }
 });
